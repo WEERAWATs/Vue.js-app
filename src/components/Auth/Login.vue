@@ -60,7 +60,7 @@ export default {
             this.alert.color = 'info'
             this.alert.msg = 'กำลังเข้าสู่ระบบ...'
 
-            await axios.post('http://localhost:3000/login',{
+            await axios.post('https://jhgdfjkjkdfasdf.herokuapp.com/login',{
                 username:this.form.username,
                 password:this.form.password,
             }).then((res) => {

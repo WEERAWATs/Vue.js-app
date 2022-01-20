@@ -89,7 +89,7 @@ export default {
     mounted() {
         let id = this.$route.params.id; 
         axios
-            .get('http://localhost:3000/product/'+id)
+            .get('https://jhgdfjkjkdfasdf.herokuapp.com/product/'+id)
             .then((res) => {
                 this.product = res.data.data
             })
@@ -102,7 +102,7 @@ export default {
         async addCart(e) {
             e.preventDefault();
             axios
-                .post('http://localhost:3000/cart',{
+                .post('https://jhgdfjkjkdfasdf.herokuapp.com/cart',{
                     uid: this.$store.state.user.uid,
                     pid: this.form.id,
                     qty: this.form.qty
@@ -126,7 +126,7 @@ export default {
         async buyCart(e) {
             e.preventDefault();
             axios
-                .post('http://localhost:3000/cart',{
+                .post('https://jhgdfjkjkdfasdf.herokuapp.com/cart',{
                     uid: this.$store.state.user.uid,
                     pid: this.form.id,
                     qty: this.form.qty

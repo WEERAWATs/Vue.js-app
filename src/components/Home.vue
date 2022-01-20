@@ -39,7 +39,7 @@ export default {
     },
     mounted() {
         axios
-            .get('http://localhost:3000/products')
+            .get('https://jhgdfjkjkdfasdf.herokuapp.com/products')
             .then((res) => {
                 this.products = res.data.data
             })

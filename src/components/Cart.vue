@@ -64,7 +64,7 @@ export default {
 
         async getData() {
             axios
-                .get('http://localhost:3000/cart/'+this.$store.state.user.uid)
+                .get('https://jhgdfjkjkdfasdf.herokuapp.com/cart/'+this.$store.state.user.uid)
                 .then((res) => {
                     console.log(res);
                     this.cart = res.data.data

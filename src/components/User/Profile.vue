@@ -58,7 +58,7 @@ export default {
     },
     mounted() {
         axios
-            .get(`http://localhost:3000/user/${this.$store.state.user.uid}`)
+            .get(`https://jhgdfjkjkdfasdf.herokuapp.com/user/${this.$store.state.user.uid}`)
             .then((res) => {
                 this.user.fullname = res.data.data.fullname
                 this.user.tel = res.data.data.tel

@@ -119,7 +119,7 @@ export default {
             this.alert.color = 'info'
             this.alert.msg = 'กำลังสมัครสมาชิก...'
 
-            axios.post('http://localhost:3000/check_username',{
+            axios.post('https://jhgdfjkjkdfasdf.herokuapp.com/check_username',{
                 username: this.form.username
             })
                 .then((res) => {
@@ -128,7 +128,7 @@ export default {
                         this.alert.msg = 'มีชื่อผู้ใช้งานนี้ในระบบแล้ว TT'
                     }else{
                         if(this.form.confirm_password == this.form.password){
-                        axios.post('http://localhost:3000/register',{
+                        axios.post('https://jhgdfjkjkdfasdf.herokuapp.com/register',{
                             username:this.form.username,
                             password:this.form.password,
                             tel:this.form.tel,
