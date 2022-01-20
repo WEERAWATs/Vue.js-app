@@ -34,7 +34,7 @@ export default {
     },
     mounted() {
         axios
-            .post('https://jhgdfjkjkdfasdf.herokuapp.com/category',{
+            .post('https://jhgdfjkjkdfasdf.herokuapp.com/products/category',{
                 name: this.$route.params.name
             })
             .then((res) => {
