@@ -99,13 +99,11 @@ export default {
             category: []
         }
     },
-    mounted() {
-        axios
-            .post('http://192.168.1.73/REST_API/services/api/category.php',{
-                action:'all'
-            })
+    async mounted() {
+        await axios
+            .get('https://jhgdfjkjkdfasdf.herokuapp.com/category')
             .then((res) => {
-                this.category = res.data.response
+                this.category = res.data.data
             })
     },
     computed: {

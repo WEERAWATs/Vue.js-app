@@ -34,12 +34,11 @@ export default {
     },
     mounted() {
         axios
-            .post('http://192.168.1.73/REST_API/services/api/product.php',{
-                name: this.$route.params.name,
-                action: 'category'
+            .post('https://jhgdfjkjkdfasdf.herokuapp.com/category',{
+                name: this.$route.params.name
             })
             .then((res) => {
-                this.products = res.data.response
+                this.products = res.data.data
             })
     },
 }
