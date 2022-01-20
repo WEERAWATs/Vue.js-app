@@ -1,5 +1,19 @@
 <template>
-    <div class="container h-80vh p-1">
+    <div class="container" v-if="products.length == 0">
+        <div class="card">
+            <div class="card-body" style="height:55vh">
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <h1 class="text-center">
+                    Loading...
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="container h-80vh p-1" v-else>
         <div class="p-4">
             <h2 class="mt-2">สินค้าทั้งหมด</h2><hr>
             <div class="row row-cols-1 row-cols-lg-5 row-cols-md-3 row-cols-sm-2 g-3">
@@ -37,8 +51,8 @@ export default {
             products: [],
         }
     },
-    mounted() {
-        axios
+    async mounted() {
+        await axios
             .get('https://jhgdfjkjkdfasdf.herokuapp.com/products')
             .then((res) => {
                 this.products = res.data.data
