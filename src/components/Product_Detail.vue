@@ -1,15 +1,12 @@
 <template>
-    <div class="container p-5 bg-white" v-if="product.name == null">
-        <div class="card">
-            <div class="card-body" style="height:55vh">
-                <div class="text-center">
-                    <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </div>
-                <h1 class="text-center">
-                    Loading...
-                </h1>
+    <div class="card" v-if="product.length == 0">
+        <div class="card-body" style="height:55vh">
+            <div class="text-center">
+                <div class="spinner-grow" role="status"></div>
+                <div class="spinner-grow" role="status"></div>
+                <div class="spinner-grow" role="status"></div>
+                <div class="spinner-grow" role="status"></div>
+                <div class="spinner-grow" role="status"></div>
             </div>
         </div>
     </div>
@@ -17,7 +14,7 @@
         <div class="container px-4 px-lg-5 my-5  border border-2 p-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6">
-                    <img class="card-img-top mb-5 mb-md-0" v-bind:src="`../images/products/${product.img}`" :alt="product.name" />
+                    <img class="card-img-top mb-5 mb-md-0" :src="`../images/products/${product.img}`" :alt="product.name" />
                 </div>
                 <div class="col-md-6">
                     <h4 class="fw-bolder">
@@ -31,12 +28,7 @@
                             คงเหลือ: {{product.qty}} ชิ้น
                         </h6>
                     </div>
-                    <div class="d-flex mb-2 align-middle">
-                        <!-- <select name='qty' class="form-control text-center me-2" style="width:50px">
-                            <option>X</option>
-                        </select> -->
-                    </div>
-                    <div v-if="product.qty > 0">
+                    <div v-if="product.qty > 0 && uid">
                         <form @submit="form">
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">จำนวน</label>
@@ -50,6 +42,9 @@
                         <div :class="`alert alert-${alert.color} mt-2`" v-if="alert">
                             <b>{{alert.msg}}</b>
                         </div>
+                    </div>
+                    <div v-if="!uid">
+                        <router-link to="/Login" class="btn btn-primary">เข้าสู่ระบบ</router-link>
                     </div>
                 </div>
             </div>
@@ -84,11 +79,12 @@ export default {
                 color:'',
                 msg:''
             },
+            uid:this.$store.state.user.uid,
         }
     },
-    mounted() {
+    async mounted() {
         let id = this.$route.params.id; 
-        axios
+        await axios
             .get('https://jhgdfjkjkdfasdf.herokuapp.com/product/'+id)
             .then((res) => {
                 this.product = res.data.data
@@ -101,7 +97,7 @@ export default {
         
         async addCart(e) {
             e.preventDefault();
-            axios
+            await axios
                 .post('https://jhgdfjkjkdfasdf.herokuapp.com/cart',{
                     uid: this.$store.state.user.uid,
                     pid: this.form.id,
@@ -125,7 +121,7 @@ export default {
 
         async buyCart(e) {
             e.preventDefault();
-            axios
+            await axios
                 .post('https://jhgdfjkjkdfasdf.herokuapp.com/cart',{
                     uid: this.$store.state.user.uid,
                     pid: this.form.id,

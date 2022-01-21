@@ -1,7 +1,18 @@
 <template>
      <div class='container p-5 bg-white'>
-        <h3>ตะกร้าสินค้า</h3> 
-        <table class='table table-hover table-bordered mt-3 align-middle'>
+        <h3>ตะกร้าสินค้า</h3>
+        <div class="card" v-if="cart.length == 0">
+            <div class="card-body" style="height:55vh">
+                <div class="text-center">
+                    <div class="spinner-grow" role="status"></div>
+                    <div class="spinner-grow" role="status"></div>
+                    <div class="spinner-grow" role="status"></div>
+                    <div class="spinner-grow" role="status"></div>
+                    <div class="spinner-grow" role="status"></div>
+                </div>
+            </div>
+        </div>
+        <table class='table table-hover table-bordered mt-3 align-middle' v-else>
             <thead bgcolor='#CACACA'>
                 <tr>
                     <th class='text-center'>สินค้า</th>
@@ -25,6 +36,7 @@
                         <h6>รวม: ฿{{ formatPrice(data.price*data.qty) }}</h6>
                     </td>
                     <td class='text-center'>
+                        <h1>{{data.cid}}</h1>
                         <button class='btn btn-danger btn-sm' @click="delCart(data.cid)">ลบ</button>
                     </td>
                 </tr>                
@@ -63,10 +75,11 @@ export default {
         },
 
         async getData() {
-            axios
-                .get('https://jhgdfjkjkdfasdf.herokuapp.com/cart/'+this.$store.state.user.uid)
+            await axios
+                .post('https://jhgdfjkjkdfasdf.herokuapp.com/user/cart',{
+                    uid:this.$store.state.user.uid
+                })
                 .then((res) => {
-                    console.log(res);
                     this.cart = res.data.data
                     this.cart.forEach(element => {
                         this.sumQTY += parseInt(element.qty)
@@ -76,9 +89,10 @@ export default {
                 })
         },
 
-        delCart(id) {
+        delCart(cid) {
+            console.log(cid);
             axios
-                .delete('http://localhost/api/cart.php?id='+id)
+                .delete('https://jhgdfjkjkdfasdf.herokuapp.com/cart')
                 .then(() => {
                     this.getData()
                 })

@@ -7,8 +7,8 @@ const store = createStore({
     state: {
         user: {
             isLogin:false,
-            uid:'',
-            username:'',
+            uid:null,
+            username:null,
             cartQTY:0,
         }
     },
