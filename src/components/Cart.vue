@@ -89,10 +89,9 @@ export default {
                 })
         },
 
-        delCart(cid) {
-            console.log(cid);
+        delCart(id) {
             axios
-                .delete('https://jhgdfjkjkdfasdf.herokuapp.com/cart')
+                .delete('https://jhgdfjkjkdfasdf.herokuapp.com/cart/'+id)
                 .then(() => {
                     this.getData()
                 })
