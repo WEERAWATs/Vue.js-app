@@ -79,6 +79,7 @@
                                     type="submit"
                                     class="btn btn-success"
                                 >
+                                <span v-if="isRegister" class="spinner-border spinner-border-sm"></span>
                                 สมัครมาชิก
                                 </button>
                             </div>

@@ -20,7 +20,10 @@
                                 <input type="password"  v-model="form.password" class="form-control" maxlength="50" placeholder="กรอกรหัสผ่านของคุณ" required>
                             </div>
                             <div class="d-grid gap-2">
-                                <button class="btn btn-primary" type="submit">เข้าสู่ระบบ</button>
+                                <button class="btn btn-primary" type="submit">
+                                    <span v-if="isLogin" class="spinner-border spinner-border-sm"></span>
+                                    เข้าสู่ระบบ
+                                </button>
                             </div>
                         </form>
                         <div class="mt-3 float-end">

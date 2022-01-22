@@ -128,7 +128,7 @@ export default {
                     qty: this.form.qty
                 })
                 .then((res) => {
-                    if(res.data.status == "ok"){
+                    if(res.data.data.error !== true){
                         this.$router.replace("/Cart")
                     }else{
                         this.alert.color = "danger"

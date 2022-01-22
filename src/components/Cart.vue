@@ -1,18 +1,7 @@
 <template>
      <div class='container p-5 bg-white'>
         <h3>ตะกร้าสินค้า</h3>
-        <div class="card" v-if="cart.length == 0">
-            <div class="card-body" style="height:55vh">
-                <div class="text-center">
-                    <div class="spinner-grow" role="status"></div>
-                    <div class="spinner-grow" role="status"></div>
-                    <div class="spinner-grow" role="status"></div>
-                    <div class="spinner-grow" role="status"></div>
-                    <div class="spinner-grow" role="status"></div>
-                </div>
-            </div>
-        </div>
-        <table class='table table-hover table-bordered mt-3 align-middle' v-else>
+        <table class='table table-hover table-bordered mt-3 align-middle'>
             <thead bgcolor='#CACACA'>
                 <tr>
                     <th class='text-center'>สินค้า</th>
@@ -36,8 +25,10 @@
                         <h6>รวม: ฿{{ formatPrice(data.price*data.qty) }}</h6>
                     </td>
                     <td class='text-center'>
-                        <h1>{{data.cid}}</h1>
-                        <button class='btn btn-danger btn-sm' @click="delCart(data.cid)">ลบ</button>
+                        <button class="btn btn-danger btn-sm" @click="delCart(data.cid)">
+                            <span v-if="btnLoading.id == data.cid" class="spinner-border spinner-border-sm"></span>
+                            ลบ
+                        </button>
                     </td>
                 </tr>                
                 <tr bgcolor='#CACACA'>
@@ -66,7 +57,10 @@ export default {
         return {
             cart: [],
             sumQTY:0,
-            sumTotal:0
+            sumTotal:0,
+            btnLoading:{
+                id:'',
+            }
         }
     },
     methods: {
@@ -90,10 +84,12 @@ export default {
         },
 
         delCart(id) {
+            this.btnLoading.id = id
             axios
                 .delete('https://jhgdfjkjkdfasdf.herokuapp.com/cart/'+id)
-                .then(() => {
-                    this.getData()
+                .then(async() => {
+                    await this.getData()
+                    this.btnLoading.id = ""
                 })
         }
     },
