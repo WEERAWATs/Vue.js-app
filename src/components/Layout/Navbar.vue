@@ -20,17 +20,17 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li v-for="data in category" v-bind:key="data.id_category">
-                                <router-link :to="`/Category/${data.name}`" class='dropdown-item'>{{data.name}}</router-link>
+                                <router-link :to="`/category/${data.name}`" class='dropdown-item'>{{data.name}}</router-link>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/About" active-class="active" class="nav-link">เกี่ยวกับเรา</router-link>
+                        <router-link to="/about" active-class="active" class="nav-link">เกี่ยวกับเรา</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/Contact" active-class="active" class="nav-link">ติดต่อเรา</router-link>
+                        <router-link to="/contact" active-class="active" class="nav-link">ติดต่อเรา</router-link>
                     </li>
-                    <form class="d-flex me-5" action="index.php">
+                    <form class="d-flex me-5">
                         <input class="form-control rounded-0 rounded-start shadow-none border border-secondary" type="search" id="search" name="search" placeholder="ค้นหาสินค้า" aria-label="Search" value=''>
                         <button class="btn btn-outline-secondary rounded-0 rounded-end shadow-none text-dark" type="submit">
                             ค้นหา
@@ -38,15 +38,15 @@
                     </form>
                 </ul>
                     <template v-if="isLogin == false">
-                        <router-link to="/Login" active-class="btn-dark text-white" class="btn btn-outline-dark width-100 me-1">
+                        <router-link to="/login" active-class="btn-dark text-white" class="btn btn-outline-dark width-100 me-1">
                             เข้าสู่ระบบ
                         </router-link>
-                        <router-link to="/Register" active-class="btn-dark text-white" class="btn btn-outline-dark width-100">
+                        <router-link to="/register" active-class="btn-dark text-white" class="btn btn-outline-dark width-100">
                             สมัครสมาชิก
                         </router-link>
                     </template>
                     <template v-else>
-                        <router-link to="/Cart" class="btn btn-outline-dark me-1">
+                        <router-link to="/cart" class="btn btn-outline-dark me-1">
                                 ตะกร้า
                             <span class="badge bg-dark text-white ms-1 rounded-pill">
                                 {{ cartQTY }}
@@ -60,17 +60,17 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <router-link to='/User/Profile' class='dropdown-item'>
+                                    <router-link to='/user/profile' class='dropdown-item'>
                                         ข้อมูลส่วนตัว
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to='/Cart' class='dropdown-item'>
+                                    <router-link to='/cart' class='dropdown-item'>
                                         ตะกร้าสินค้า
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to='/User/My_Products' class='dropdown-item'>
+                                    <router-link to='/user/purchase' class='dropdown-item'>
                                         สินค้าของฉัน
                                     </router-link>
                                 </li>

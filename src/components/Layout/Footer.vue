@@ -9,11 +9,11 @@
                 </a>
             </div>
             <div class="col-8">
-                <router-link to="/" class="text-white text-decoration-none">หน้าแรก</router-link>
-                <router-link to="/About" class="text-white text-decoration-none">เกี่ยวกับเรา</router-link>
-                <router-link to="/Contact" class="text-white text-decoration-none">ติดต่อเรา</router-link>
-                <router-link to="/Login" class="text-white text-decoration-none">เข้าสู่ระบบ</router-link>
-                <router-link to="/Register" class="text-white text-decoration-none">สมัครสมาชิก</router-link>
+                <router-link to="/" class="text-white text-decoration-none mx-1">หน้าแรก</router-link>
+                <router-link to="/about" class="text-white text-decoration-none mx-1">เกี่ยวกับเรา</router-link>
+                <router-link to="/contact" class="text-white text-decoration-none mx-1">ติดต่อเรา</router-link>
+                <router-link to="/login" class="text-white text-decoration-none mx-1">เข้าสู่ระบบ</router-link>
+                <router-link to="/register" class="text-white text-decoration-none mx-1">สมัครสมาชิก</router-link>
             </div>
         </div>
         <hr>

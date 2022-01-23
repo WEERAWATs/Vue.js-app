@@ -27,7 +27,7 @@
                             </div>
                         </form>
                         <div class="mt-3 float-end">
-                            <span>ถ้าคุณยังไม่มีบัญชี <router-link to="/Register">สมัครมาชิก</router-link></span>
+                            <span>ถ้าคุณยังไม่มีบัญชี <router-link to="/register">สมัครมาชิก</router-link></span>
                         </div>
                     </div>
                 </div>

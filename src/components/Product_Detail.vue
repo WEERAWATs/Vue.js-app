@@ -2,11 +2,9 @@
     <div class="card" v-if="product.length == 0">
         <div class="card-body" style="height:55vh">
             <div class="text-center">
-                <div class="spinner-grow" role="status"></div>
-                <div class="spinner-grow" role="status"></div>
-                <div class="spinner-grow" role="status"></div>
-                <div class="spinner-grow" role="status"></div>
-                <div class="spinner-grow" role="status"></div>
+                <div class="spinner-grow spinner-grow-sm mx-1"></div>
+                <div class="spinner-grow spinner-grow-sm"></div>
+                <div class="spinner-grow spinner-grow-sm mx-1"></div>
             </div>
         </div>
     </div>

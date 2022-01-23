@@ -2,14 +2,16 @@
     <div class="container h-80vh p-1">
         <div class="p-4">
             <h2 class="mt-2">{{$route.params.name}}</h2><hr>
-            <div class="card" v-if="products.length == 0">
-                <div class="card-body" style="height:55vh">
-                    <div class="text-center">
-                        <div class="spinner-grow" role="status"></div>
-                        <div class="spinner-grow" role="status"></div>
-                        <div class="spinner-grow" role="status"></div>
-                        <div class="spinner-grow" role="status"></div>
-                        <div class="spinner-grow" role="status"></div>
+            <div class="row row-cols-1 row-cols-lg-5 row-cols-md-3 row-cols-sm-2 g-3" v-if="products.length == 0">
+                <div class="col" v-for="i in 5" :key="i">    
+                    <div class="card">
+                        <div class="card-body p-4" style="height: 400px">
+                            <div class="text-center">
+                                <div class="spinner-grow spinner-grow-sm mx-1"></div>
+                                <div class="spinner-grow spinner-grow-sm"></div>
+                                <div class="spinner-grow spinner-grow-sm mx-1"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -37,20 +39,24 @@
 import axios from 'axios';
 
 export default {
-    name: "Home",
     data() {
         return {
             products: []
         }
     },
-    mounted() {
-        axios
-            .post('https://jhgdfjkjkdfasdf.herokuapp.com/products/category',{
-                name: this.$route.params.name
-            })
-            .then((res) => {
-                this.products = res.data.data
-            })
+    methods:  {
+        async getProducts() {
+             await axios
+                .post('https://jhgdfjkjkdfasdf.herokuapp.com/products/category',{
+                    name: this.$route.params.name
+                })
+                .then((res) => {
+                    this.products = res.data.data
+                })
+        }
     },
+    beforeMount() {
+        this.getProducts()
+    }
 }
 </script>

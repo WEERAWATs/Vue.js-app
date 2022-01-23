@@ -75,17 +75,14 @@
                                 </div>
                             </div>
                             <div class="d-grid gap-2">
-                                <button
-                                    type="submit"
-                                    class="btn btn-success"
-                                >
-                                <span v-if="isRegister" class="spinner-border spinner-border-sm"></span>
-                                สมัครมาชิก
+                                <button type="submit" class="btn btn-success">
+                                    <span v-if="isRegister" class="spinner-border spinner-border-sm"></span>
+                                    สมัครมาชิก
                                 </button>
                             </div>
                         </form>
                         <div class="mt-3">
-                            <span>ถ้าคุณมีบัญชีแล้ว <router-link to="/Login">เข้าสู่ระบบ</router-link></span>
+                            <span>ถ้าคุณมีบัญชีแล้ว <router-link to="/login">เข้าสู่ระบบ</router-link></span>
                         </div>
                     </div>
                 </div>

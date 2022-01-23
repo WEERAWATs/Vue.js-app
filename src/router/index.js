@@ -8,7 +8,7 @@ import Login from '../components/Auth/Login.vue'
 import Register from '../components/Auth/Register.vue'
 import Cart from '../components/Cart.vue'
 import Profile from '../components/User/Profile.vue'
-import My_Products from '../components/User/My_Products.vue'
+import Purchase from '../components/User/Purchase.vue'
 
 const routes = [
   {
@@ -17,40 +17,40 @@ const routes = [
     component: Home
   },
   {
-    path: '/About',
+    path: '/about',
     component: About
   },
   {
-    path: '/Contact',
+    path: '/contact',
     component: Contact
   },
   {
-    path: '/Product/:id',
+    path: '/product/:id',
     component: Product_Detail
   },
   {
-    path: '/Category/:name',
+    path: '/category/:name',
     component: Category
   },
   {
-    path: '/Login',
+    path: '/login',
     component: Login
   },
   {
-    path: '/Register',
+    path: '/register',
     component: Register
   },
   {
-    path: '/Cart',
+    path: '/cart',
     component: Cart
   },
   {
-    path: '/User/Profile',
+    path: '/user/profile',
     component: Profile
   },
   {
-    path: '/User/My_Products',
-    component: My_Products,
+    path: '/user/purchase',
+    component: Purchase,
   },
 ]
 
