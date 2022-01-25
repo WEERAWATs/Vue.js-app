@@ -32,7 +32,7 @@
                     <div class="col-md-12">
                         <div class="d-grid gap-2 my-3">
                             <button type='submit' class='btn btn-success'>บันทึก</button>
-                            <a class="btn btn-outline-dark">ย้อนกลับ</a>
+                            <a @click="back" class="btn btn-outline-dark">ย้อนกลับ</a>
                         </div>
                     </div>
                 </form>
@@ -65,6 +65,11 @@ export default {
                 this.user.email = res.data.data.email
                 this.user.address = res.data.data.address
             })
+    },
+    methods:{
+        back() {
+            this.$router.go(-1)
+        }
     }
 }
 </script>

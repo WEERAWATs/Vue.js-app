@@ -42,6 +42,7 @@ export default {
     data() {
         return {
             products: [],
+            sumQTY:0
         }
     },
     async mounted() {
@@ -49,6 +50,17 @@ export default {
             .get('https://jhgdfjkjkdfasdf.herokuapp.com/products')
             .then((res) => {
                 this.products = res.data.data
+            })
+        
+        await axios
+            .post('https://jhgdfjkjkdfasdf.herokuapp.com/user/cart',{
+                uid:this.$store.state.user.uid
+            })
+            .then((res) => {
+                res.data.data.forEach(element => {
+                    this.sumQTY += parseInt(element.qty)
+                });
+                this.$store.commit('setCartQTY', this.sumQTY)
             })
     },
     methods: {

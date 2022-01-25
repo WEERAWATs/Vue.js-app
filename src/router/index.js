@@ -6,7 +6,8 @@ import Product_Detail from '../components/Product_Detail.vue'
 import Category from '../components/Category.vue'
 import Login from '../components/Auth/Login.vue'
 import Register from '../components/Auth/Register.vue'
-import Cart from '../components/Cart.vue'
+import Cart from '../components/User/Cart.vue'
+import Checkout from '../components/User/Checkout.vue'
 import Profile from '../components/User/Profile.vue'
 import Purchase from '../components/User/Purchase.vue'
 
@@ -43,6 +44,10 @@ const routes = [
   {
     path: '/cart',
     component: Cart
+  },
+  {
+    path: '/checkout',
+    component: Checkout,
   },
   {
     path: '/user/profile',

@@ -25,8 +25,8 @@
                         <h6>รวม: ฿{{ formatPrice(data.price*data.qty) }}</h6>
                     </td>
                     <td class='text-center'>
-                        <button class="btn btn-danger btn-sm" @click="delCart(data.cid)">
-                            <span v-if="btnLoading.id == data.cid" class="spinner-border spinner-border-sm"></span>
+                        <button class="btn btn-danger btn-sm" @click="delCart(data.cid)" :disabled="btnLoading.id == data.cid">
+                            <span v-show="btnLoading.id == data.cid" class="spinner-border spinner-border-sm"></span>
                             ลบ
                         </button>
                     </td>
@@ -41,7 +41,7 @@
                 <tr>
                     <td colspan='4' class='text-end'>
                         <button class="btn btn-warning me-2">ลบทั้งหมด</button>
-                        <button class="btn btn-primary">สั่งสินค้า</button>
+                        <router-link to="checkout" class="btn btn-primary">สั่งสินค้า</router-link>
                     </td>
                 </tr>
             </tbody>

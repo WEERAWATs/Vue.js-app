@@ -96,11 +96,11 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            category: []
+            category: [],
         }
     },
-    async mounted() {
-        await axios
+    mounted() {
+        axios
             .get('https://jhgdfjkjkdfasdf.herokuapp.com/category')
             .then((res) => {
                 this.category = res.data.data
@@ -122,16 +122,16 @@ export default {
     },
     methods: {
         async Logout() {
-            this.$store.commit('setLogin', false)
-            this.$store.commit('setUID', '')
-            this.$store.commit('setUsername', '')
-            this.$store.commit('setCartQTY', 0)
+            await this.$store.commit('setLogin', false)
+            await this.$store.commit('setUID', '')
+            await this.$store.commit('setUsername', '')
+            await this.$store.commit('setCartQTY', 0)
     
-            localStorage.removeItem('isLogin')
-            localStorage.removeItem('blog_token')
+            await localStorage.removeItem('isLogin')
+            // await localStorage.removeItem('token')
 
-            this.$router.push('/')
-        }
-    }
+            this.$router.push('/login')
+        },
+    },
 }
 </script>

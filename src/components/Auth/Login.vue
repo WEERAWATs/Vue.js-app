@@ -7,7 +7,7 @@
                         <h2>การเข้าสู่ระบบ</h2>
                     </div>
                     <div class="card-body">
-                        <div :class="`alert alert-${alert.color}`" v-if="isLogin">
+                        <div :class="`alert alert-${alert.color}`" v-if="alert.msg != ''">
                             <b>{{alert.msg}}</b>
                         </div>
                         <form @submit="submit">
@@ -20,8 +20,8 @@
                                 <input type="password"  v-model="form.password" class="form-control" maxlength="50" placeholder="กรอกรหัสผ่านของคุณ" required>
                             </div>
                             <div class="d-grid gap-2">
-                                <button class="btn btn-primary" type="submit">
-                                    <span v-if="isLogin" class="spinner-border spinner-border-sm"></span>
+                                <button class="btn btn-primary" type="submit" :disabled="isLogin">
+                                    <span v-show="isLogin" class="spinner-border spinner-border-sm"></span>
                                     เข้าสู่ระบบ
                                 </button>
                             </div>
@@ -59,39 +59,33 @@ export default {
     methods: {
         async submit(e){
             e.preventDefault();
-            this.isLogin = true
-            this.alert.color = 'info'
-            this.alert.msg = 'กำลังเข้าสู่ระบบ...'
+            this.isLogin = true;
 
             await axios.post('https://jhgdfjkjkdfasdf.herokuapp.com/login',{
                 username:this.form.username,
                 password:this.form.password,
             }).then((res) => {
                 if (!res.data.data.error) {
-                    this.alert.color = 'success'
-                    this.alert.msg = 'เข้าสู่ระบบสำเร็จ :)'
+                    this.$store.commit('setLogin', true);
+                    this.$store.commit('setUID', res.data.data.id_user);
+                    this.$store.commit('setUsername', res.data.data.username);
 
-                    this.$store.commit('setLogin', true)
-                    this.$store.commit('setUID', res.data.data.id_user)
-                    this.$store.commit('setUsername', res.data.data.username)
+                    localStorage.setItem('isLogin', true);
+                    // localStorage.setItem('access_token', res.data.access_token)
 
-                localStorage.setItem('isLogin', true)
-                // localStorage.setItem('access_token', res.data.access_token)
-
-                    this.$router.push('/')
-                } else {
-                    this.alert.color = 'danger'
-                    this.alert.msg = 'เข้าสู่ระบบไม่สำเร็จ :('
+                    this.$router.go(-1);
                 }
             }).catch(() => {
-                this.$store.commit('setLogin', false)
-                this.alert.color = 'danger'
-                this.alert.msg = 'เข้าสู่ระบบไม่สำเร็จ :('
+                    this.isLogin = false;
+                    this.alert.color = 'warning';
+                    this.alert.msg = 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง :(';
             })
-
-            // setTimeout(() => {
-            //     this.isLogin = false
-            // }, 3000);
+            // .catch(() => {
+            //     this.isLogin = false;
+            //     this.$store.commit('setLogin', false);
+            //     this.alert.color = 'danger';
+            //     this.alert.msg = 'เข้าสู่ระบบไม่สำเร็จ TT';
+            // })
         }
     }
 }

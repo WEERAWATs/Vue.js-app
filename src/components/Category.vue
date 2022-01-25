@@ -23,7 +23,7 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <b class="fw-bolder text-wrap">{{product.name}}</b>
-                                    <p class="text-danger">฿{{product.price}}</p>
+                                    <p class="text-danger mt-2">฿{{ formatPrice(product.price) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -45,6 +45,10 @@ export default {
         }
     },
     methods:  {
+        formatPrice(value) {
+            return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+        },
+
         async getProducts() {
              await axios
                 .post('https://jhgdfjkjkdfasdf.herokuapp.com/products/category',{
@@ -55,7 +59,10 @@ export default {
                 })
         }
     },
-    beforeMount() {
+    mounted() {
+        this.getProducts()
+    },
+    updated() {
         this.getProducts()
     }
 }
